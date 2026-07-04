@@ -121,18 +121,21 @@ const toggleAll = () => {
   font-size: 13px;
   color: #3d2f22;
   min-width: 28px;
+  flex-shrink: 0;
 }
 
 .item-title {
   flex: 1;
   font-size: 14px;
   color: #1a1410;
+  word-break: break-word;
 }
 
 .item-time {
   font-size: 13px;
   color: #3d2f22;
   font-family: 'Courier New', monospace;
+  flex-shrink: 0;
 }
 
 .item-status {
@@ -140,6 +143,7 @@ const toggleAll = () => {
   color: #1a1410;
   min-width: 20px;
   text-align: center;
+  flex-shrink: 0;
 }
 
 .procedure-controls {
@@ -167,26 +171,86 @@ const toggleAll = () => {
   color: #ffffff;
 }
 
-@media (max-width: 768px) {
+/* ==========================================================
+   АДАПТИВ ДЛЯ МОБИЛОК — ФИКС
+   ========================================================== */
+@media (max-width: 600px) {
   .case-block {
-    padding: 18px 16px;
+    padding: 16px 12px;
   }
+
+  .procedure-header {
+    flex-direction: column;
+    align-items: center;
+    gap: 2px;
+    text-align: center;
+  }
+
+  .procedure-stamp {
+    font-size: 16px;
+    letter-spacing: 3px;
+  }
+
   .procedure-item {
     flex-wrap: wrap;
-    gap: 4px;
+    gap: 4px 8px;
+    padding: 8px 10px;
   }
+
+  .item-num {
+    font-size: 12px;
+    min-width: 24px;
+  }
+
   .item-title {
     flex: 1 1 100%;
+    font-size: 14px;
     order: 2;
+    padding: 2px 0;
   }
+
   .item-time {
+    font-size: 12px;
     order: 3;
   }
+
   .item-status {
+    font-size: 16px;
     order: 4;
   }
-  .item-num {
-    order: 1;
+
+  .procedure-controls {
+    margin-top: 10px;
+  }
+
+  .btn-secondary {
+    font-size: 11px;
+    padding: 4px 14px;
+    width: 100%;
+  }
+}
+
+@media (max-width: 400px) {
+  .case-block {
+    padding: 12px 8px;
+  }
+
+  .procedure-stamp {
+    font-size: 14px;
+    letter-spacing: 2px;
+  }
+
+  .item-title {
+    font-size: 13px;
+  }
+
+  .item-time {
+    font-size: 11px;
+  }
+
+  .procedure-item {
+    padding: 6px 8px;
+    gap: 2px 6px;
   }
 }
 </style>
