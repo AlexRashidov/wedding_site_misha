@@ -16,15 +16,33 @@
       </div>
       <div class="form-group">
         <label>количество гостей</label>
-        <input v-model.number="form.guests" type="number" min="0" max="5" />
+        <input v-model.number="form.guests" type="number" min="0" max="10" />
       </div>
-      <button class="btn-primary" @click="submitForm">подтвердить явку</button>
+      <div class="form-group">
+        <label>особые отметки</label>
+        <textarea
+            v-model="form.notes"
+            placeholder="аллергии, пожелания, особые условия..."
+            rows="2"
+        ></textarea>
+      </div>
+      <button
+          class="btn-primary"
+          @click="submitForm"
+          :disabled="isLoading"
+      >
+        {{ isLoading ? 'отправка...' : 'подтвердить явку' }}
+      </button>
+      <div v-if="error" class="error-message">
+        ⚠️ {{ error }}
+      </div>
     </div>
 
     <div v-else class="witness-done">
       <div class="witness-stamp-big">ЯВИЛСЯ</div>
       <p><strong>{{ form.name }}</strong></p>
       <p>👥 {{ form.guests }} чел.</p>
+      <p v-if="form.notes" class="witness-notes">📝 {{ form.notes }}</p>
       <button class="btn-secondary" @click="resetForm">изменить</button>
     </div>
   </div>
@@ -32,14 +50,54 @@
 
 <script setup>
 import { ref, reactive } from 'vue'
+import { sendToTelegram } from '../services/telegram.js'
 
 const submitted = ref(false)
-const form = reactive({ name: '', phone: '', guests: 1 })
+const isLoading = ref(false)
+const error = ref('')
 
-const submitForm = () => {
-  if (!form.name.trim()) { alert('Введите ФИО'); return }
-  if (!form.phone.trim()) { alert('Введите телефон'); return }
-  submitted.value = true
+const form = reactive({
+  name: '',
+  phone: '',
+  guests: 1,
+  notes: ''
+})
+
+const submitForm = async () => {
+  // Валидация
+  if (!form.name.trim()) {
+    error.value = 'Введите ФИО'
+    setTimeout(() => error.value = '', 3000)
+    return
+  }
+  if (!form.phone.trim()) {
+    error.value = 'Введите телефон'
+    setTimeout(() => error.value = '', 3000)
+    return
+  }
+
+  isLoading.value = true
+  error.value = ''
+
+  try {
+    const success = await sendToTelegram({
+      name: form.name.trim(),
+      phone: form.phone.trim(),
+      guests: form.guests || 1,
+      notes: form.notes.trim()
+    })
+
+    if (success) {
+      submitted.value = true
+      error.value = ''
+    } else {
+      error.value = 'Ошибка отправки. Попробуйте позже.'
+    }
+  } catch (err) {
+    error.value = 'Ошибка соединения. Проверьте интернет.'
+  } finally {
+    isLoading.value = false
+  }
 }
 
 const resetForm = () => {
@@ -47,6 +105,8 @@ const resetForm = () => {
   form.name = ''
   form.phone = ''
   form.guests = 1
+  form.notes = ''
+  error.value = ''
 }
 </script>
 
@@ -110,7 +170,8 @@ const resetForm = () => {
   margin-bottom: 2px;
 }
 
-.form-group input {
+.form-group input,
+.form-group textarea {
   width: 100%;
   padding: 6px 10px;
   background: #ffffff;
@@ -118,11 +179,21 @@ const resetForm = () => {
   font-family: 'Courier New', monospace;
   font-size: 14px;
   color: #1a1410;
+  transition: all 0.2s ease;
 }
 
-.form-group input:focus {
+.form-group input:focus,
+.form-group textarea:focus {
   outline: none;
   background: rgba(0,0,0,0.02);
+  border-color: #1a1410;
+}
+
+.form-group textarea {
+  resize: vertical;
+  min-height: 50px;
+  font-family: 'Courier New', monospace;
+  font-size: 13px;
 }
 
 .btn-primary {
@@ -140,8 +211,23 @@ const resetForm = () => {
   width: 100%;
 }
 
-.btn-primary:hover {
+.btn-primary:hover:not(:disabled) {
   background: #000000;
+}
+
+.btn-primary:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.error-message {
+  margin-top: 8px;
+  padding: 6px 10px;
+  border: 1px solid #8b0000;
+  color: #8b0000;
+  font-size: 13px;
+  text-align: center;
+  background: rgba(139, 0, 0, 0.02);
 }
 
 .witness-done {
@@ -175,6 +261,16 @@ const resetForm = () => {
   margin: 4px 0;
 }
 
+.witness-notes {
+  font-size: 13px;
+  color: #3d2f22;
+  font-style: italic;
+  margin-top: 6px !important;
+  padding: 4px 12px;
+  border: 1px dashed #1a1410;
+  display: inline-block;
+}
+
 .btn-secondary {
   background: transparent;
   color: #1a1410;
@@ -197,6 +293,23 @@ const resetForm = () => {
 @media (max-width: 768px) {
   .case-block {
     padding: 18px 16px;
+  }
+}
+
+@media (max-width: 400px) {
+  .case-block {
+    padding: 12px 10px;
+  }
+
+  .witness-stamp {
+    font-size: 15px;
+    letter-spacing: 3px;
+  }
+
+  .witness-stamp-big {
+    font-size: 24px;
+    padding: 4px 18px;
+    letter-spacing: 4px;
   }
 }
 </style>

@@ -32,7 +32,7 @@ export const weddingData = {
     decree: {
         date: '18 июля 2026 года',
         time: '11:30',
-        place: 'Батунская ривьера',
+        place: 'ЗАГС',
         judge: 'А. П. Свадебный'
     },
 

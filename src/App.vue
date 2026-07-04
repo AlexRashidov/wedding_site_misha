@@ -26,6 +26,7 @@
     <Attire />
     <Gifts />
     <Witness />
+    <Attire/>
     <Conclusion />
 
     <!-- ФУТЕР -->
@@ -47,6 +48,7 @@ import Procedure from './components/Procedure.vue'
 //import Gifts from './components/Gifts.vue'
 import Witness from './components/Witness.vue'
 import Conclusion from './components/Conclusion.vue'
+import Attire from './components/Attire.vue'
 </script>
 
 <style scoped>

@@ -155,22 +155,22 @@
         <div class="signature-line">
           <span class="sig-label">Уполномоченное лицо</span>
           <span class="sig-name handwritten">М. С. Мурза</span>
-          <span class="sig-date">15.07.2026</span>
+          <span class="sig-date">18.07.2026</span>
         </div>
         <div class="signature-line">
           <span class="sig-label">Задержанная</span>
           <span class="sig-name handwritten">Е. И. Фискова</span>
-          <span class="sig-date">15.07.2026</span>
+          <span class="sig-date">18.07.2026</span>
         </div>
         <div class="signature-line">
-          <span class="sig-label">Понятой</span>
+          <span class="sig-label">Свидетель</span>
           <span class="sig-name handwritten">А. И. Рашидов</span>
-          <span class="sig-date">15.07.2026</span>
+          <span class="sig-date">18.07.2026</span>
         </div>
         <div class="signature-line">
-          <span class="sig-label">Понятой</span>
+          <span class="sig-label">Свидетель</span>
           <span class="sig-name handwritten">К. Е. Шипулина</span>
-          <span class="sig-date">15.07.2026</span>
+          <span class="sig-date">18.07.2026</span>
         </div>
       </div>
       <div class="seal">
