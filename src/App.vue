@@ -24,6 +24,7 @@
     <Procedure />
     <Witness />
     <Attire/>
+    <PhotoUpload/>
     <Conclusion />
 
     <!-- ФУТЕР -->
@@ -41,6 +42,7 @@ import CaseFile from './components/CaseFile.vue'
 import Protocol from './components/Protocol.vue'
 import Decree from './components/Decree.vue'
 import Procedure from './components/Procedure.vue'
+import PhotoUpload from "./components/PhotoUpload.vue";
 //import Program from './components/Program.vue'
 //import Gifts from './components/Gifts.vue'
 import Witness from './components/Witness.vue'
