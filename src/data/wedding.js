@@ -12,7 +12,7 @@ export const weddingData = {
         patronymic: 'Сергеевич',
         birthDate: '03.11.2002',
         birthPlace: 'г. Заринск, Алтайский край',
-        rank: 'Старший лейтенант',
+        rank: 'Старший сержант',
         department: 'Управление ЗАГС',
         badge: '№ 042',
         photo: '/images/groom.jpg'

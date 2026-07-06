@@ -11,8 +11,8 @@
     </div>
 
     <div class="protocol-meta">
-      <span>📍 г. Заринск</span>
-      <span>📅 «18» июля 2026 года</span>
+      <span>📍 г. Москва</span>
+      <span>📅 «15» июля 2026 года</span>
       <span>🕐 16:30</span>
     </div>
 
@@ -119,28 +119,21 @@
           </div>
         </div>
 
-        <!-- Фото справа с решёткой -->
+        <!-- Фото справа БЕЗ РЕШЁТКИ -->
         <div class="person-photo">
           <div class="photo-wrapper">
             <div class="photo-tape tape-tl"></div>
             <div class="photo-tape tape-tr"></div>
             <div class="photo-tape tape-bl"></div>
             <div class="photo-tape tape-br"></div>
-            <div class="prison-overlay">
-              <div class="prison-bars">
-                <span></span><span></span><span></span>
-                <span></span><span></span><span></span>
-                <span></span><span></span><span></span>
-              </div>
-              <img
-                  v-if="data.bride.photo"
-                  :src="data.bride.photo"
-                  alt="Фото задержанной"
-                  class="photo-prison"
-                  @error="handleImageError"
-              />
-              <div v-else class="photo-placeholder">ФОТО</div>
-            </div>
+            <img
+                v-if="data.bride.photo"
+                :src="data.bride.photo"
+                alt="Фото задержанной"
+                class="photo-prison"
+                @error="handleImageError"
+            />
+            <div v-else class="photo-placeholder">ФОТО</div>
             <div class="arrested-stamp">ЗАДЕРЖАНА</div>
           </div>
         </div>
@@ -155,22 +148,22 @@
         <div class="signature-line">
           <span class="sig-label">Уполномоченное лицо</span>
           <span class="sig-name handwritten">М. С. Мурза</span>
-          <span class="sig-date">18.07.2026</span>
+          <span class="sig-date">15.07.2026</span>
         </div>
         <div class="signature-line">
           <span class="sig-label">Задержанная</span>
-          <span class="sig-name handwritten">Е. И. Фискова</span>
-          <span class="sig-date">18.07.2026</span>
+          <span class="sig-name handwritten">А. С. Красавина</span>
+          <span class="sig-date">15.07.2026</span>
         </div>
         <div class="signature-line">
-          <span class="sig-label">Свидетель</span>
-          <span class="sig-name handwritten">А. И. Рашидов</span>
-          <span class="sig-date">18.07.2026</span>
+          <span class="sig-label">Понятой</span>
+          <span class="sig-name handwritten">________________</span>
+          <span class="sig-date">15.07.2026</span>
         </div>
         <div class="signature-line">
-          <span class="sig-label">Свидетель</span>
-          <span class="sig-name handwritten">К. Е. Шипулина</span>
-          <span class="sig-date">18.07.2026</span>
+          <span class="sig-label">Понятой</span>
+          <span class="sig-name handwritten">________________</span>
+          <span class="sig-date">15.07.2026</span>
         </div>
       </div>
       <div class="seal">
@@ -183,7 +176,7 @@
     <!-- ============================================================ -->
     <div class="protocol-footer">
       <div class="fingerprint">
-
+        <span>🖐️</span>
         <span>Отпечатки пальцев сняты</span>
       </div>
       <div class="protocol-end">
@@ -206,7 +199,7 @@ const handleImageError = (e) => {
 
 <style scoped>
 /* ==========================================================
-   ПРОТОКОЛ — ФОТО БОЛЬШЕ, БЕЗ РАМКИ
+   ПРОТОКОЛ — БЕЗ РЕШЁТКИ
    ========================================================== */
 
 .protocol-block {
@@ -334,7 +327,7 @@ const handleImageError = (e) => {
   font-size: 20px;
 }
 
-/* ===== ФОТО — БОЛЬШЕ, БЕЗ РАМКИ ===== */
+/* ===== ФОТО ===== */
 .photo-wrapper {
   display: inline-block;
   position: relative;
@@ -361,7 +354,6 @@ const handleImageError = (e) => {
   object-fit: cover;
   border: 1px solid #1a1410;
   background: #d4c9b8;
-  filter: grayscale(0.15);
 }
 
 .photo-placeholder {
@@ -409,45 +401,6 @@ const handleImageError = (e) => {
   box-shadow: 0 2px 6px rgba(0,0,0,0.2);
   z-index: 5;
   white-space: nowrap;
-}
-
-/* ===== РЕШЁТКА ===== */
-.prison-overlay {
-  position: relative;
-  display: inline-block;
-}
-
-.prison-bars {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-  pointer-events: none;
-  z-index: 2;
-}
-
-.prison-bars span {
-  display: block;
-  width: 3px;
-  height: 100%;
-  background: rgba(30, 30, 30, 0.25);
-  border-left: 1px solid rgba(0,0,0,0.05);
-  border-right: 1px solid rgba(0,0,0,0.05);
-}
-
-.prison-bars span:nth-child(2),
-.prison-bars span:nth-child(5),
-.prison-bars span:nth-child(8) {
-  width: 2px;
-}
-
-.prison-bars span:nth-child(3),
-.prison-bars span:nth-child(6) {
-  width: 4px;
 }
 
 /* ===== СКОТЧ ===== */

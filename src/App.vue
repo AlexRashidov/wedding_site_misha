@@ -22,9 +22,6 @@
     <Protocol />
     <Decree />
     <Procedure />
-    <Program />
-    <Attire />
-    <Gifts />
     <Witness />
     <Attire/>
     <Conclusion />
