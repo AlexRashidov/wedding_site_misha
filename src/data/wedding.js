@@ -39,9 +39,9 @@ export const weddingData = {
     procedures: [
         { id: 1, title: 'Сбор гостей', time: '11:15' },
         { id: 2, title: 'Роспись', time: '11:30' },
-        { id: 3, title: 'Фотосессия', time: '13:30' },
-        { id: 4, title: 'Банкет', time: '13:30' },
-        { id: 5, title: 'Тамада', time: '16:00' },
+        { id: 3, title: 'Фотосессия', time: '12:00' },
+        { id: 4, title: 'Банкет', time: '14:00' },
+        { id: 5, title: 'Тамада', time: '14:00' },
     ],
 
 
